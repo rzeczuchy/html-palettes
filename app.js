@@ -46,7 +46,19 @@ const palettes = [
     "thistle",
     "gainsboro",
   ]),
+  new Palette("grayscale", [
+    "black",
+    "darkslategray",
+    "dimgray",
+    "gray",
+    "darkgray",
+    "gainsboro",
+    "whitesmoke",
+    "ghostwhite",
+  ]),
 ];
+
+const darkColors = ["black", "midnightblue", "indigo"];
 
 const main = document.querySelector("main");
 
@@ -83,6 +95,10 @@ function createColorDiv(color) {
   newColorDiv.classList.add("color");
   newColorDiv.classList.add(color);
   newColorDiv.textContent = color;
+
+  if (darkColors.includes(color)) {
+    newColorDiv.classList.add("contrast");
+  }
 
   return newColorDiv;
 }
