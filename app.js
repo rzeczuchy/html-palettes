@@ -56,9 +56,19 @@ const palettes = [
     "whitesmoke",
     "ghostwhite",
   ]),
+  new Palette("pale", [
+    "skyblue",
+    "cadetblue",
+    "darkseagreen",
+    "blanchedalmond",
+    "peachpuff",
+    "lightpink",
+    "thistle",
+    "gainsboro",
+  ]),
 ];
 
-const darkColors = ["black", "midnightblue", "indigo"];
+const darkColors = ["black", "midnightblue", "indigo", "navy"];
 
 const main = document.querySelector("main");
 
