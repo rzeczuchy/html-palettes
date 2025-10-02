@@ -8,36 +8,35 @@ class Palette {
 const palettes = [
   new Palette("End of summer", [
     "slateblue",
-    "deepskyblue",
+    "cornflowerblue",
     "khaki",
     "goldenrod",
     "chocolate",
-    "brown",
+    "saddlebrown",
     "darkolivegreen",
     "olivedrab",
+  ]),
+  new Palette("glacier", [
+    "darkslategray",
+    "teal",
+    "lightseagreen",
+    "mediumturquoise",
+    "paleturquoise",
+    "lightcyan",
+    "snow",
   ]),
   new Palette("Riverside", [
     "darkslategray",
     "darkolivegreen",
     "olivedrab",
     "yellowgreen",
-    "antiquewhite",
+    "wheat",
     "skyblue",
     "cornflowerblue",
     "royalblue",
   ]),
-  new Palette("Cottage roof", [
-    "steelblue",
-    "skyblue",
-    "powderblue",
-    "sandybrown",
-    "darkorange",
-    "chocolate",
-    "saddlebrown",
-    "dimgray",
-  ]),
   new Palette("orchid", [
-    "indigo",
+    "darkslateblue",
     "rebeccapurple",
     "darkorchid",
     "mediumorchid",
@@ -45,6 +44,15 @@ const palettes = [
     "plum",
     "thistle",
     "gainsboro",
+  ]),
+  new Palette("Cottage roof", [
+    "cornflowerblue",
+    "skyblue",
+    "powderblue",
+    "chocolate",
+    "sienna",
+    "silver",
+    "linen",
   ]),
   new Palette("grayscale", [
     "black",
@@ -65,6 +73,16 @@ const palettes = [
     "lightpink",
     "thistle",
     "gainsboro",
+  ]),
+  new Palette("City pop", [
+    "orchid",
+    "plum",
+    "thistle",
+    "gainsboro",
+    "whitesmoke",
+    "paleturquoise",
+    "turquoise",
+    "lightseagreen",
   ]),
 ];
 
@@ -101,6 +119,10 @@ function createPaletteSection(palette) {
 }
 
 function createColorDiv(color) {
+  if (!CSS.supports("background-color", color)) {
+    throw new RangeError(`${color} is not a valid CSS background-color.`);
+  }
+
   const newColorDiv = document.createElement("div");
   newColorDiv.classList.add("color");
   newColorDiv.classList.add(color);
@@ -113,4 +135,28 @@ function createColorDiv(color) {
   return newColorDiv;
 }
 
+function printStats() {
+  const allColorArrays = collectAllColorArrays();
+  const allColors = Array.prototype.concat.apply([], allColorArrays);
+  const uniqueColors = [...new Set(allColors)];
+  uniqueColors.sort((a, b) => a.localeCompare(b));
+
+  console.log(`${palettes.length} palettes created.`);
+  console.log(`${uniqueColors.length} out of 140 named HTML colors used.`);
+  console.log(`Unique colors used:`);
+  uniqueColors.forEach((element) => {
+    console.log(element);
+  });
+}
+
+function collectAllColorArrays() {
+  const allColorArrays = [];
+  palettes.forEach((element) => {
+    allColorArrays.push(element.colors);
+  });
+
+  return allColorArrays;
+}
+
 populatePalettes();
+printStats();
