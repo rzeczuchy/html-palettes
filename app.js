@@ -84,6 +84,17 @@ const palettes = [
     "turquoise",
     "lightseagreen",
   ]),
+  new Palette("rgb", [
+    "red",
+    "firebrick",
+    "darkred",
+    "limegreen",
+    "olivedrab",
+    "darkgreen",
+    "blue",
+    "mediumblue",
+    "darkblue",
+  ]),
 ];
 
 const darkColors = ["black", "midnightblue", "indigo", "navy"];
